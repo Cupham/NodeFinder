@@ -38,6 +38,9 @@ public class EchonetDataConverter {
 	public static byte dataToByte(ObjectData data) {
 		return (new BigInteger(data.toBytes()).byteValue());
 	}
+	public static byte dataToByte(ResultData data) {
+		return (new BigInteger(data.toBytes()).byteValue());
+	}
 
 	/**
 	 * convert data to integer value. Apply for value have max 4 bytes: status,
@@ -359,6 +362,90 @@ public class EchonetDataConverter {
 		
 		return rs;
 	}
+	public static String dataToOpeningLevel(ObjectData data) {
+		int dataSize = data.size();
+		String rs = "";
+		if (dataSize != 1) {
+			rs =  "Invalid";
+		}
+
+		switch (data.get(0)) {
+			case (byte)0x30:
+				rs = "Closed";
+				break;
+			case (byte) 0x31:
+				rs = "Open Level 1";
+				break;
+			case (byte) 0x32:
+				rs = "Open Level 2";
+				break;
+			case (byte) 0x33:
+				rs = "Open Level 3";
+				break;
+			case (byte) 0x34:
+				rs = "Open Level 4";
+			break;
+			case (byte) 0x35:
+				rs = "Open Level 5";
+			break;
+			case (byte) 0x36:
+				rs = "Open Level 6";
+				break;
+			case (byte) 0x37:
+				rs = "Open Level 7";
+			break;
+			case (byte) 0x38:
+				rs = "Fully Open";
+			break;
+			default:
+				rs = "Unknown";
+				break;
+		}
+		
+		return rs;
+	}
+	public static String dataToOpeningLevel(ResultData data) {
+		int dataSize = data.size();
+		String rs = "";
+		if (dataSize != 1) {
+			rs =  "Invalid";
+		}
+
+		switch (data.get(0)) {
+			case (byte)0x30:
+				rs = "Closed";
+				break;
+			case (byte) 0x31:
+				rs = "Open Level 1";
+				break;
+			case (byte) 0x32:
+				rs = "Open Level 2";
+				break;
+			case (byte) 0x33:
+				rs = "Open Level 3";
+				break;
+			case (byte) 0x34:
+				rs = "Open Level 4";
+			break;
+			case (byte) 0x35:
+				rs = "Open Level 5";
+			break;
+			case (byte) 0x36:
+				rs = "Open Level 6";
+				break;
+			case (byte) 0x37:
+				rs = "Open Level 7";
+			break;
+			case (byte) 0x38:
+				rs = "Fully Open";
+			break;
+			default:
+				rs = "Unknown";
+				break;
+		}
+		
+		return rs;
+	}
 	public static String dataToLevel(ResultData data) {
 		int dataSize = data.size();
 		String rs = "";
@@ -396,6 +483,48 @@ public class EchonetDataConverter {
 			break;
 			default:
 				rs = "Automatic";
+				break;
+		}
+		
+		return rs;
+	}
+	public static String dataToDirection(ResultData data) {
+		int dataSize = data.size();
+		String rs = "";
+		if (dataSize != 1) {
+			rs =  "Invalid";
+		}
+
+		switch (data.get(0)) {
+			case (byte) 0x30:
+				rs = "No Passage";
+				break;
+			case (byte) 0x31:
+				rs = "IN";
+				break;
+			case (byte) 0x32:
+				rs = "IN_RIGHT";
+				break;
+			case (byte) 0x33:
+				rs = "PARALLEL_RIGHT";
+				break;
+			case (byte) 0x34:
+				rs = "OUT_RIGHT";
+			break;
+			case (byte) 0x35:
+				rs = "OUT";
+			break;
+			case (byte) 0x36:
+				rs = "OUT_LEFT";
+				break;
+			case (byte) 0x37:
+				rs = "PARALLEL_LEFT";
+			break;
+			case (byte) 0x38:
+				rs = "IN_LEFT";
+			break;
+			default:
+				rs = "Passage detected but not located";
 				break;
 		}
 		
@@ -1062,7 +1191,14 @@ public class EchonetDataConverter {
 			return comProtocol + ((number.trim().length() > 1) ? " " + number : "");
 		}
 	}
-
+	public static String dataToCoordinator(ResultData data) {
+		String coordinator = "";	
+		byte[] allData = data.toBytes();
+		Byte firstByte = new Byte(allData[0]);
+		Byte secondByte = new Byte(allData[1]);
+		Byte thirdByte = new Byte(allData[2]);
+		return String.format("X=%d, Y=%d, Z=%d",firstByte.intValue(),secondByte.intValue(),thirdByte.intValue());
+	}
 	public static String getFaultDetail(ObjectData odata) throws EchonetObjectException {
 		FaultType faultType = null;
 		String contentSpecification = "";

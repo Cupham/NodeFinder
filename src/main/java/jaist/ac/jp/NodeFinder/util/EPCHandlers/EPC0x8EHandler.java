@@ -4,7 +4,7 @@ import java.util.Date;
 
 import jaist.ac.jp.NodeFinder.echonet.object.NodeProfileObject;
 import jaist.ac.jp.NodeFinder.echonet.object.eSuperClass;
-import jaist.ac.jp.NodeFinder.echonet.object.deviceobj.eGeneralLighting;
+import jaist.ac.jp.NodeFinder.echonet.object.sensors.eGeneralLighting;
 import jaist.ac.jp.NodeFinder.echonet.objectmapper.DeviceIDEnum;
 
 public class EPC0x8EHandler {

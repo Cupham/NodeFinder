@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import echowand.common.EOJ;
 import echowand.net.Node;
 import jaist.ac.jp.NodeFinder.echonet.object.eDataObject;
-import jaist.ac.jp.NodeFinder.echonet.object.deviceobj.eGeneralLighting;
+import jaist.ac.jp.NodeFinder.echonet.object.sensors.eGeneralLighting;
 
 public class HousingDeviceMapper {
 	private static final Logger logger = Logger.getLogger(HousingDeviceMapper.class.getName());
