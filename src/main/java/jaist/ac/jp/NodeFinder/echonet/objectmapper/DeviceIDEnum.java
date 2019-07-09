@@ -49,7 +49,10 @@ public enum DeviceIDEnum {
 	GeneralLight(0x02 << 8 | 0x90),
 	
 	
-	
+	Display(0x06 << 8 | 0x01),
+	Television(0x06 << 8 | 0x02),
+	Audio(0x06 << 8 | 0x03),
+	NetworkCamera(0x06 << 8 | 0x04),
 	
 	
 	Profile(0x0e << 8 | 0xf0);

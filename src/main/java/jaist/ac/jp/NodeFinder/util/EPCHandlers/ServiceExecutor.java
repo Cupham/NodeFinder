@@ -1,4 +1,4 @@
-package jaist.ac.jp.NodeFinder.echonet.objectmapper;
+package jaist.ac.jp.NodeFinder.util.EPCHandlers;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

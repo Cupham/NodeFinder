@@ -19,7 +19,7 @@ import echowand.service.Core;
 import echowand.service.Service;
 import jaist.ac.jp.NodeFinder.echonet.object.EchonetLiteDevice;
 import jaist.ac.jp.NodeFinder.echonet.object.NodeProfileObject;
-import jaist.ac.jp.NodeFinder.echonet.objectmapper.ServiceExecutor;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.ServiceExecutor;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.ArgumentParserException;
