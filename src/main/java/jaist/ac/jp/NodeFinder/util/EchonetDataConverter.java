@@ -317,7 +317,7 @@ public class EchonetDataConverter {
 		return rs;
 	}
 	
-	public static String dataToAirConditionerFlowRate(ObjectData data) {
+	public static String dataToLevel(ObjectData data) {
 		int dataSize = data.size();
 		String rs = "";
 		if (dataSize != 1) {
@@ -359,7 +359,7 @@ public class EchonetDataConverter {
 		
 		return rs;
 	}
-	public static String dataToAirConditionerFlowRate(ResultData data) {
+	public static String dataToLevel(ResultData data) {
 		int dataSize = data.size();
 		String rs = "";
 		if (dataSize != 1) {

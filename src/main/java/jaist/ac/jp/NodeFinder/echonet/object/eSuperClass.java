@@ -23,128 +23,150 @@ import echowand.service.result.ObserveResult;
 import echowand.service.result.ResultData;
 import echowand.service.result.ResultFrame;
 import jaist.ac.jp.NodeFinder.App;
-import jaist.ac.jp.NodeFinder.util.EDTParser;
+import jaist.ac.jp.NodeFinder.echonet.objectmapper.DeviceIDEnum;
 import jaist.ac.jp.NodeFinder.util.EchonetDataConverter;
 import jaist.ac.jp.NodeFinder.util.SampleConstants;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x80Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x81Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x82Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x83Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x84Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x85Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x86Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x87Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x88Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x89Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x8AHandler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x8BHandler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x8CHandler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x8DHandler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x8EHandler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x8FHandler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x93Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x97Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x98Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x99Handler;
+import jaist.ac.jp.NodeFinder.util.EPCHandlers.EPC0x9AHandler;
 
 public class eSuperClass {
 	private static final Logger logger = Logger.getLogger(eSuperClass.class.getName());
 	private Timer timer;
 	private String deviceID;
+	private DeviceIDEnum type;
 	/**
 	 * Device IP
 	 */
-	public Node node;
+	private Node node;
 	/**
 	 * Class group code
 	 */
-	public byte groupCode;
+	private byte groupCode;
 	/**
 	 * Class code
 	 */
-	public byte classCode;
+	private byte classCode;
 	/**
 	 * Instance code
 	 */
-	public byte instanceCode;
+	private byte instanceCode;
 	
-	public EOJ eoj;
+	private EOJ eoj;
 
 	/**
 	 * EPC: 0x80 ON: 0x30, OFF: 0x31
 	 */
-	public boolean operationStatus;
+	private boolean operationStatus;
 	/**
 	 * EPC: 0x81
 	 */
-	public String installLocation;
+	private String installLocation;
 	/**
 	 * EPC: 0x82 the release number of the corresponding Appendix with fixed 4
 	 * bytes
 	 */
-	public String standardVersionInfo;
+	private String standardVersionInfo;
 	/**
 	 * EPC: 0x83 Unique identification number fixed 9 bytes
 	 */
-	public String identificationNumber;
+	private String identificationNumber;
 	/**
 	 * EPC: 0x84 Instantaneous power consumption of the device in watts Value
 	 * between: 0x0000–0xFFFD(0–65533W)
 	 */
-	public short instantaneousPower;
+	private short instantaneousPower;
 	/**
 	 * EPC: 0x85 Cumulative power consumption of the device in increments of
 	 * 0.001kWh Value between: 0x00000000–0x3B9AC9FF (0–999,999.999kWh)
 	 */
-	public long cumulativePower;
+	private long cumulativePower;
 	/**
 	 * EPC: 0x86 Manufacturer-defined fault code
 	 */
-	public String manufacturerFaultCode;
+	private String manufacturerFaultCode;
 	/**
 	 * EPC: 0x87 Current limit setting Value betwee: 0x00–0x64 (=0–100%)
 	 */
-	public int currentLimitSetting;
+	private int currentLimitSetting;
 	/**
 	 * EPC: 0x88 whether a fault (e.g. a sensor trouble) has occurred or not.
 	 * Fault occurred: 0x41, No fault has occurred: 0x42
 	 */
-	public boolean faultStatus;
+	private boolean faultStatus;
 	/**
 	 * EPC: 0x89 Describes the fault
 	 */
-	public String faultDescription;
+	private String faultDescription;
 	/**
 	 * EPC:0x8A 3-byte manufacturer code unsigned (Defined by the ECHONET
 	 * Consortium)
 	 */
-	public String manufacturerCode;
+	private String manufacturerCode;
 	/**
 	 * EPC: 0x8B 3-byte business facility code (Defined by each manufacturer)
 	 */
-	public String businessFacilityCode;
+	private String businessFacilityCode;
 	/**
 	 * EPC: 0x8C Identifies the product using ASCII code (Defined by each
 	 * manufacturer)
 	 */
-	public String productCode;
+	private String productCode;
 	/**
 	 * EPC: 0x8D Production number using ASCII code (Defined by each
 	 * manufacturer)
 	 */
-	public String productNumber;
+	private String productNumber;
 	/**
 	 * EPC: 0x8E 4-byte production date code, YYMD format
 	 */
-	public Date productDate;
+	private Date productDate;
 	/**
 	 * EPC: 0x8F Device is operating in power-saving mode Operating in
 	 * power-saving mode: 0x41, Operating in normal operation mode: 0x42
 	 */
-	public boolean powerSaving;
+	private boolean powerSaving;
 	/**
 	 * EPC: 0x93 Whether remote control is through a public network or not Not
 	 * through a public network: 0x41 Through a public network: 0x42
 	 */
-	public boolean throughPublicNetwork;
+	private boolean throughPublicNetwork;
 	/**
 	 * EPC: 0x97 Current time (HH: MM format), 0x00–0x17: 0x00–0x3B (=0–23):
 	 * (=0–59)
 	 */
-	public String currentTimeSetting;
+	private String currentTimeSetting;
 	/**
 	 * EPC: 0x98 Current date (YYYY: MM: DD format),1–0x270F : 1–0x0C : 1–0x1F
 	 * (=1–9999) : (=1–12) : (=1–31)
 	 */
-	public Date currentDateSetting;
+	private Date currentDateSetting;
 	/**
 	 * EPC: 0x99 Power limit setting in watts 0x0000–0xFFFF(0–65535W)
 	 */
-	public int powerLimit;
+	private int powerLimit;
 	/**
 	 * EPC: 0x9A Cumulative operating time
 	 */
-	public String cumulativeTime;
+	private String cumulativeTime;
 	public eSuperClass() {
 		super();
 	}
@@ -159,6 +181,7 @@ public class eSuperClass {
 		eSuperClass.this.node = node;
 		eSuperClass.this.eoj = eoj;
 		eSuperClass.this.deviceID = node.getNodeInfo().toString().replace(".", "_")+"_"+eoj.getInstanceCode();
+		eSuperClass.this.type = DeviceIDEnum.Profile;
 	}
 	public void getSuperData(Service service, Node n, EOJ e){
 		final EOJ eoj = e;
@@ -175,9 +198,9 @@ public class eSuperClass {
 					switch (resultData.getEPC()) {
 					case x80:
 						if(EchonetDataConverter.dataToInteger(resultData) == 48) {
-							EDTParser.refreshOperationStatus(eSuperClass.this, true);
+							EPC0x80Handler.refreshOperationStatus(eSuperClass.this, true);
 						} else {
-							EDTParser.refreshOperationStatus(eSuperClass.this, false);
+							EPC0x80Handler.refreshOperationStatus(eSuperClass.this, false);
 						}
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x80, EDT: 0x%02X}=={OperationStatus:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getOperationStatus()));
@@ -188,46 +211,46 @@ public class eSuperClass {
 						if (rsLocation == null) {
 							rsLocation = " The installation location has not been set";
 						}
-						EDTParser.refreshInstallLocation(eSuperClass.this,rsLocation);		
+						EPC0x81Handler.refreshInstallLocation(eSuperClass.this,rsLocation);		
 						
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x81, EDT: 0x%02X}=={InstallationLocation:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getInstallLocation()));
 						break;
 					case x82:
-						EDTParser.refreshStandardVersionInfo(eSuperClass.this,EchonetDataConverter.dataToVersion(resultData));
+						EPC0x82Handler.refreshStandardVersionInfo(eSuperClass.this,EchonetDataConverter.dataToVersion(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x82, EDT: 0x%02X}=={Version Information:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getStandardVersionInfo()));
 						break;
 					case x83:
-						EDTParser.refreshIdentificationNumber(eSuperClass.this,EchonetDataConverter.dataToIdentifiCationNumber(resultData));
+						EPC0x83Handler.refreshIdentificationNumber(eSuperClass.this,EchonetDataConverter.dataToIdentifiCationNumber(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x83, EDT: 0x%02X}=={Identification Number:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getIdentificationNumber()));
 						break;
 					case x84:
-						EDTParser.refreshInstantaneousPower(eSuperClass.this,EchonetDataConverter.dataToShort(resultData));
+						EPC0x84Handler.refreshInstantaneousPower(eSuperClass.this,EchonetDataConverter.dataToShort(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x84, EDT: 0x%02X}=={Instantaneous Power Consumption:%d}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getInstantaneousPower()));
 						break;		
 					case x85:
-						EDTParser.refreshCumulativePower(eSuperClass.this,EchonetDataConverter.dataToLong(resultData));
+						EPC0x85Handler.refreshCumulativePower(eSuperClass.this,EchonetDataConverter.dataToLong(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x85, EDT: 0x%02X}=={Cumulative Power Consumption:%d}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getCumulativePower()));
 						break;
 					case x86:
-						EDTParser.refreshManufactureerFaultCode(eSuperClass.this,EchonetDataConverter.dataToFaultCode(resultData));
+						EPC0x86Handler.refreshManufacturerFaultCode(eSuperClass.this,EchonetDataConverter.dataToFaultCode(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x86, EDT: 0x%02X}=={Manufacturer Fault Code:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getManufacturerFaultCode()));
 						break;
 					case x87:
-						EDTParser.refreshCurrentLimitSetting(eSuperClass.this,EchonetDataConverter.dataToInteger(resultData));
+						EPC0x87Handler.refreshCurrentLimitSetting(eSuperClass.this,EchonetDataConverter.dataToInteger(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x87, EDT: 0x%02X}=={Current Limit Setting:%d}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getCurrentLimitSetting()));
 						break;		
 					case x88:
 						if(EchonetDataConverter.dataToInteger(resultData) == 65) {
-							EDTParser.refreshFaultStatus(eSuperClass.this,true);
+							EPC0x88Handler.refreshFaultStatus(eSuperClass.this,true);
 						} else {
-							EDTParser.refreshFaultStatus(eSuperClass.this,false);
+							EPC0x88Handler.refreshFaultStatus(eSuperClass.this,false);
 						}
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x88, EDT: 0x%02X}=={Fault Status:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],isFaultStatus()));
@@ -235,76 +258,76 @@ public class eSuperClass {
 					case x89:
 						if (isFaultStatus()) {
 							try {
-								EDTParser.refreshFaultDescription(eSuperClass.this,EchonetDataConverter.getFaultDetail(resultData));
+								EPC0x89Handler.refreshFaultDescription(eSuperClass.this,EchonetDataConverter.getFaultDetail(resultData));
 							} catch (EchonetObjectException e) {
 								e.printStackTrace();
 							}
 						} else {
-							EDTParser.refreshFaultDescription(eSuperClass.this,"NO FAULT");
+							EPC0x89Handler.refreshFaultDescription(eSuperClass.this,"NO FAULT");
 						}
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x89, EDT: 0x%02X}=={Fault Description:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getFaultDescription()));
 						break;
 					case x8A:
-						EDTParser.refreshManufacturerCode(eSuperClass.this,EchonetDataConverter.dataToString(resultData));
+						EPC0x8AHandler.refreshManufacturerCode(eSuperClass.this,EchonetDataConverter.dataToString(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x8A, EDT: 0x%02X}=={Manufacturer Code:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getManufacturerCode()));
 						break;	
 					case x8B:						
-						EDTParser.refreshBusinessFacilityCode(eSuperClass.this,EchonetDataConverter.dataToString(resultData));
+						EPC0x8BHandler.refreshBusinessFacilityCode(eSuperClass.this,EchonetDataConverter.dataToString(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x8B, EDT: 0x%02X}=={Business Facility Code:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getBusinessFacilityCode()));
 						break;
 					case x8C:
-						EDTParser.refreshProductCode(eSuperClass.this,EchonetDataConverter.dataToString(resultData));
+						EPC0x8CHandler.refreshProductCode(eSuperClass.this,EchonetDataConverter.dataToString(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x8C, EDT: 0x%02X}=={Product Code:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getProductCode()));
 						break;
 					case x8D:
-						EDTParser.refreshProductNumber(eSuperClass.this,EchonetDataConverter.dataToString(resultData));
+						EPC0x8DHandler.refreshProductNumber(eSuperClass.this,EchonetDataConverter.dataToString(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x8D, EDT: 0x%02X}=={Product Number:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getProductNumber()));
 						break;		
 					case x8E:
-						EDTParser.refreshProductDate(eSuperClass.this,EchonetDataConverter.dataToDate(resultData));
+						EPC0x8EHandler.refreshProductDate(eSuperClass.this,EchonetDataConverter.dataToDate(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x8E, EDT: 0x%02X}=={Production Date:%tA}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getProductDate()));
 						break;
 					case x8F:				
 						if(EchonetDataConverter.dataToInteger(resultData) == 65) {
-							EDTParser.refreshPowerSaving(eSuperClass.this,true);
+							EPC0x8FHandler.refreshPowerSaving(eSuperClass.this,true);
 						} else {
-							EDTParser.refreshPowerSaving(eSuperClass.this,false);
+							EPC0x8FHandler.refreshPowerSaving(eSuperClass.this,false);
 						}
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x8F, EDT: 0x%02X}=={PowerSaving Mode:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getPowerSaving()));
 						break;
 					case x93:
 						if(EchonetDataConverter.dataToInteger(resultData) == 65) {
-							EDTParser.refreshThroughPublicNetwork(eSuperClass.this,false);
+							EPC0x93Handler.refreshThroughPublicNetwork(eSuperClass.this,false);
 						} else {
-							EDTParser.refreshThroughPublicNetwork(eSuperClass.this,true);
+							EPC0x93Handler.refreshThroughPublicNetwork(eSuperClass.this,true);
 						}
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x93, EDT: 0x%02X}=={isThrough Public Network:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getThroughPublicNetwork()));
 						break;
 					case x97:
-						EDTParser.refreshCurrentTimeSetting(eSuperClass.this,EchonetDataConverter.dataToTime(resultData));		
+						EPC0x97Handler.refreshCurrentTimeSetting(eSuperClass.this,EchonetDataConverter.dataToTime(resultData));		
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x97, EDT: 0x%02X}=={Current Time Setting:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getCurrentTimeSetting()));
 						break;
 					case x98:
-						EDTParser.refreshCurrentDateSetting(eSuperClass.this,EchonetDataConverter.dataToDate(resultData));
+						EPC0x98Handler.refreshCurrentDateSetting(eSuperClass.this,EchonetDataConverter.dataToDate(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x98, EDT: 0x%02X}=={Current Date Setting:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getCurrentDateSetting()));
 						break;
 					case x99:
-						EDTParser.refreshPowerLimit(eSuperClass.this,EchonetDataConverter.dataToShort(resultData));
+						EPC0x99Handler.refreshPowerLimit(eSuperClass.this,EchonetDataConverter.dataToShort(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x99, EDT: 0x%02X}=={Power Limit:%d}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getPowerLimit()));
 						break;
 					case x9A:
-						EDTParser.refreshCumulativeTime(eSuperClass.this,EchonetDataConverter.dataToCummalativeTime(resultData));
+						EPC0x9AHandler.refreshCumulativeTime(eSuperClass.this,EchonetDataConverter.dataToCummalativeTime(resultData));
 						logger.info(String.format("Node:%s@EOJ:%s {EPC:0x9A, EDT: 0x%02X}=={Up Time:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getCumulativeTime()));
 						break;
@@ -389,6 +412,90 @@ public class eSuperClass {
 	public byte getGroupCode() {
 		return groupCode;
 	}
+	public void setOperationStatus(boolean operationStatus) {
+		this.operationStatus = operationStatus;
+	}
+
+	public void setInstallLocation(String installLocation) {
+		this.installLocation = installLocation;
+	}
+
+	public void setStandardVersionInfo(String standardVersionInfo) {
+		this.standardVersionInfo = standardVersionInfo;
+	}
+
+	public void setIdentificationNumber(String identificationNumber) {
+		this.identificationNumber = identificationNumber;
+	}
+
+	public void setInstantaneousPower(short instantaneousPower) {
+		this.instantaneousPower = instantaneousPower;
+	}
+
+	public void setCumulativePower(long cumulativePower) {
+		this.cumulativePower = cumulativePower;
+	}
+
+	public void setManufacturerFaultCode(String manufacturerFaultCode) {
+		this.manufacturerFaultCode = manufacturerFaultCode;
+	}
+
+	public void setCurrentLimitSetting(int currentLimitSetting) {
+		this.currentLimitSetting = currentLimitSetting;
+	}
+
+	public void setFaultStatus(boolean faultStatus) {
+		this.faultStatus = faultStatus;
+	}
+
+	public void setFaultDescription(String faultDescription) {
+		this.faultDescription = faultDescription;
+	}
+
+	public void setManufacturerCode(String manufacturerCode) {
+		this.manufacturerCode = manufacturerCode;
+	}
+
+	public void setBusinessFacilityCode(String businessFacilityCode) {
+		this.businessFacilityCode = businessFacilityCode;
+	}
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
+
+	public void setProductNumber(String productNumber) {
+		this.productNumber = productNumber;
+	}
+
+	public void setProductDate(Date productDate) {
+		this.productDate = productDate;
+	}
+
+	public void setPowerSaving(boolean powerSaving) {
+		this.powerSaving = powerSaving;
+	}
+
+	public void setThroughPublicNetwork(boolean throughPublicNetwork) {
+		this.throughPublicNetwork = throughPublicNetwork;
+	}
+
+	public void setCurrentTimeSetting(String currentTimeSetting) {
+		this.currentTimeSetting = currentTimeSetting;
+	}
+
+	public void setCurrentDateSetting(Date currentDateSetting) {
+		this.currentDateSetting = currentDateSetting;
+	}
+
+	public void setPowerLimit(int powerLimit) {
+		this.powerLimit = powerLimit;
+	}
+
+	public void setCumulativeTime(String cumulativeTime) {
+		this.cumulativeTime = cumulativeTime;
+	}
+
 	public void setGroupCode(byte groupCode) {
 		eSuperClass.this.groupCode = groupCode;
 	}
@@ -510,9 +617,9 @@ public class eSuperClass {
 					{
 					case x80:
 						if(EchonetDataConverter.dataToInteger(resultData) == 48) {
-							EDTParser.refreshOperationStatus(eSuperClass.this, true);
+							EPC0x80Handler.refreshOperationStatus(eSuperClass.this, true);
 						} else {
-							EDTParser.refreshOperationStatus(eSuperClass.this, false);
+							EPC0x80Handler.refreshOperationStatus(eSuperClass.this, false);
 						}
 						logger.info(String.format("OBSERVER: Node:%s@EOJ:%s {EPC:0x80, EDT: 0x%02X}=={OperationStatus:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getOperationStatus()));
@@ -522,16 +629,16 @@ public class eSuperClass {
 						if (rsLocation == null) {
 							rsLocation = "The installation location has not been set";
 						}
-						EDTParser.refreshInstallLocation(eSuperClass.this,rsLocation);		
+						EPC0x81Handler.refreshInstallLocation(eSuperClass.this,rsLocation);		
 						
 						logger.info(String.format("OBSERVER: Node:%s@EOJ:%s {EPC:0x81, EDT: 0x%02X}=={InstallationLocation:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],getInstallLocation()));
 						break;
 					case x88:
 						if(EchonetDataConverter.dataToInteger(resultData) == 65) {
-							EDTParser.refreshFaultStatus(eSuperClass.this,true);
+							EPC0x88Handler.refreshFaultStatus(eSuperClass.this,true);
 						} else {
-							EDTParser.refreshFaultStatus(eSuperClass.this,false);
+							EPC0x88Handler.refreshFaultStatus(eSuperClass.this,false);
 						}
 						logger.info(String.format("OBSERVER: Node:%s@EOJ:%s {EPC:0x88, EDT: 0x%02X}=={Fault Status:%s}",
 								 getNode().getNodeInfo().toString(),eoj.toString(),resultData.toBytes()[0],isFaultStatus()));
@@ -555,8 +662,8 @@ public class eSuperClass {
 			logger.info(String.format("LimitSetting is already set to %d ! nothing to do", limitSetting));
 			rs = true;
 		} else {
-			if(EDTParser.executeCommand(App.echonetService,node,eoj,EPC.x87, new ObjectData(new Integer(limitSetting).byteValue()))) {
-				EDTParser.refreshCurrentLimitSetting(eSuperClass.this,limitSetting);
+			if(App.cmdExecutor.executeCommand(node,eoj,EPC.x87, new ObjectData(new Integer(limitSetting).byteValue()))) {
+				EPC0x87Handler.refreshCurrentLimitSetting(eSuperClass.this,limitSetting);
 				rs= true;
 			} else {
 				rs = false;
@@ -570,8 +677,8 @@ public class eSuperClass {
 			logger.info("It is operating in power-saving mode! nothing to do");
 			rs = true;
 		} else {
-			if(EDTParser.executeCommand(App.echonetService,node,eoj,EPC.x8F, new ObjectData((byte) 0x41))) {
-				EDTParser.refreshPowerSaving(eSuperClass.this,true);
+			if(App.cmdExecutor.executeCommand(node,eoj,EPC.x8F, new ObjectData((byte) 0x41))) {
+				EPC0x8FHandler.refreshPowerSaving(eSuperClass.this,true);
 				rs= true;
 			} else {
 				rs = false;
@@ -586,8 +693,8 @@ public class eSuperClass {
 			logger.info("It is not operating in power-saving mode! nothing to do");
 			rs = true;
 		} else {
-			if(EDTParser.executeCommand(App.echonetService,node,eoj,EPC.x8F, new ObjectData((byte) 0x42))) {
-				EDTParser.refreshPowerSaving(eSuperClass.this,false);
+			if(App.cmdExecutor.executeCommand(node,eoj,EPC.x8F, new ObjectData((byte) 0x42))) {
+				EPC0x8FHandler.refreshPowerSaving(eSuperClass.this,false);
 				rs= true;
 			} else {
 				rs = false;
@@ -602,8 +709,8 @@ public class eSuperClass {
 			logger.info("It is accessed via public network! nothing to do");
 			rs = true;
 		} else {
-			if(EDTParser.executeCommand(App.echonetService,node,eoj,EPC.x93, new ObjectData((byte) 0x42))) {
-				EDTParser.refreshThroughPublicNetwork(eSuperClass.this,true);
+			if(App.cmdExecutor.executeCommand(node,eoj,EPC.x93, new ObjectData((byte) 0x42))) {
+				EPC0x93Handler.refreshThroughPublicNetwork(eSuperClass.this,true);
 				rs= true;
 			} else {
 				rs = false;
@@ -618,8 +725,8 @@ public class eSuperClass {
 			logger.info("It is not accessed via public network! nothing to do");
 			rs = true;
 		} else {
-			if(EDTParser.executeCommand(App.echonetService,node,eoj,EPC.x93, new ObjectData((byte) 0x41))) {
-				EDTParser.refreshThroughPublicNetwork(eSuperClass.this,false);
+			if(App.cmdExecutor.executeCommand(node,eoj,EPC.x93, new ObjectData((byte) 0x41))) {
+				EPC0x93Handler.refreshThroughPublicNetwork(eSuperClass.this,false);
 				rs= true;
 			} else {
 				rs = false;
@@ -634,8 +741,8 @@ public class eSuperClass {
 			logger.info(String.format("PowerLimitSetting is already set to %d ! nothing to do", powerLimitSetting));
 			rs = true;
 		} else {
-			if(EDTParser.executeCommand(App.echonetService,node,eoj,EPC.x99, new ObjectData(new Integer(powerLimitSetting).byteValue()))) {
-				EDTParser.refreshPowerLimit(eSuperClass.this,powerLimitSetting);
+			if(App.cmdExecutor.executeCommand(node,eoj,EPC.x99, new ObjectData(new Integer(powerLimitSetting).byteValue()))) {
+				EPC0x99Handler.refreshPowerLimit(eSuperClass.this,powerLimitSetting);
 				rs= true;
 			} else {
 				rs = false;
@@ -646,11 +753,11 @@ public class eSuperClass {
 	public boolean setOn(Node node, EOJ eoj) {
 		boolean rs = false;
 		if(getOperationStatus()) {
-			logger.info("Light is already ON! nothing to do");
+			logger.info("it is already ON! nothing to do");
 			rs = true;
 		} else {
-			if(EDTParser.executeCommand(App.echonetService,node,eoj,EPC.x80, new ObjectData((byte) 0x30))) {
-				EDTParser.refreshOperationStatus(eSuperClass.this,true);
+			if(App.cmdExecutor.executeCommand(node,eoj,EPC.x80, new ObjectData((byte) 0x30))) {
+				EPC0x80Handler.refreshOperationStatus(eSuperClass.this,true);
 				rs= true;
 			} else {
 				rs = false;
@@ -661,17 +768,25 @@ public class eSuperClass {
 	public boolean setOff(Node node, EOJ eoj) {
 		boolean rs = false;
 		if(!getOperationStatus()) {
-			logger.info("Light is already OFF! nothing to do");
+			logger.info("it is already OFF! nothing to do");
 			rs = true;
 		} else {
-			if(EDTParser.executeCommand(App.echonetService,node,eoj,EPC.x80, new ObjectData((byte) 0x31))) {
-				EDTParser.refreshOperationStatus(eSuperClass.this,false);
+			if(App.cmdExecutor.executeCommand(node,eoj,EPC.x80, new ObjectData((byte) 0x31))) {
+				EPC0x80Handler.refreshOperationStatus(eSuperClass.this,false);
 				rs= true;
 			} else {
 				rs = false;
 			}
 		}
 		return rs;
+	}
+
+	public DeviceIDEnum getType() {
+		return type;
+	}
+
+	public void setType(DeviceIDEnum type) {
+		this.type = type;
 	}
 	
 

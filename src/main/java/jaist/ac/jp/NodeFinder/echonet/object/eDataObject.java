@@ -25,6 +25,12 @@ public abstract class eDataObject extends eSuperClass{
 	public abstract void dataFromEOJ(Service service);
 	
 	/**
+	 * TODO: observe data from EPC
+	 * @param rObj
+	 * @throws EchonetObjectException 
+	 */
+	public abstract void observeSpecificData(Service service);
+	/**
 	 * TODO: parse this data to string
 	 * @return
 	 */

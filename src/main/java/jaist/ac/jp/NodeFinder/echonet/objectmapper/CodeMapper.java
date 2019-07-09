@@ -12,8 +12,10 @@ import jaist.ac.jp.NodeFinder.echonet.object.eDataObject;
 public class CodeMapper {
 	private static final Logger logger = Logger.getLogger(CodeMapper.class.getName());
 	
-	public static eDataObject dataObjectFromCode(byte gc ,byte cc, Node node, EOJ eoj) {
+	public static eDataObject dataObjectFromCode(Node node, EOJ eoj) {
 		eDataObject obj = null;
+		byte gc =eoj.getClassGroupCode();
+		byte cc = eoj.getClassCode();
 		switch (gc) {		
 			case (byte) (0x00): 
 				switch(cc) {

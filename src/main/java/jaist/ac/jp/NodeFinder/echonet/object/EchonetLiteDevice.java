@@ -38,7 +38,7 @@ public class EchonetLiteDevice {
 		byte classGroupCode = eoj.getClassGroupCode();
 		byte classCode = eoj.getClassCode();
 		logger.info("Mapping GroupCode:" + classGroupCode +" and ClassCode:" + classCode +" to device name" );
-		eDataObject dataObj = CodeMapper.dataObjectFromCode(classGroupCode, classCode,node,eoj);		
+		eDataObject dataObj = CodeMapper.dataObjectFromCode(node,eoj);		
 		if(dataObj != null) {
 			dataObj.dataFromEOJ(service);
 			//dataObj.profileObjectFromEPC(service);

@@ -90,7 +90,7 @@ public class App
 					logger.log(Level.SEVERE, e1.toString());
 				}
     			echonetService = new Service(echonetCore); 
-    			//cmdExecutor.setEchonetLiteService(echonetService);
+    			cmdExecutor.setEchonetLiteService(echonetService);
     			Monitor monitor = new Monitor(echonetCore);
     			monitor.addMonitorListener(new MonitorListener() {
     	            @Override
