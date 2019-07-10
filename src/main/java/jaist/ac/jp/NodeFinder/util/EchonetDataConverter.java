@@ -374,6 +374,29 @@ public class EchonetDataConverter {
 	        return null;
 	    }
 	}
+	public static enum AlarmStatus{
+		Normal((byte)0x40),
+		BreakOpen((byte)0x41),
+		DoorOpen((byte)0x42),
+		ManualLocked((byte)0x43),
+		Tampered((byte)0x44);
+		
+		private byte code; 
+		private AlarmStatus(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static AlarmStatus fromCode(byte code) {
+	        for (AlarmStatus i : AlarmStatus.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
 	public static enum SelectiveOperation{
 		DegreeOfSettingPossition_Open((byte)0x41),
 		OperationTimeSettingValue_Open((byte)0x42),
@@ -612,6 +635,27 @@ public class EchonetDataConverter {
 	            } else if(d.code() >= (byte)0x80 &&d.code() <= (byte)0xFD) {
 	            	return DRProgramType.UserDefinedDomain;
 	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum SprinklerValveOpenCloseSetting {
+		AutomaticON((byte)0x40),
+		ManualON((byte)0x41),
+		ManualOFF((byte)0x42);
+		
+		private byte code; 
+		private SprinklerValveOpenCloseSetting(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static SprinklerValveOpenCloseSetting fromCode(byte code) {
+	        for (SprinklerValveOpenCloseSetting d : SprinklerValveOpenCloseSetting.values()) {
+	            if (d.code() == code) {
+	                return d;
+	            } 
 	        }
 	        return null;
 	    }
