@@ -259,6 +259,398 @@ public class EchonetDataConverter {
 		
 		return rs;
 	}
+	public static String dataToStringCode(ResultData data) {
+		int dataSize = data.size();
+		String rs = "";
+		if (dataSize >= 247) {
+			rs =  "Invalid";
+		}
+
+		switch (data.get(1)) {
+			case (byte)0x01:
+				rs = "ANSI X3.4";
+				break;
+			case (byte) 0x02:
+				rs = "Shift –JIS";
+				break;
+			case (byte) 0x03:
+				rs = "JIS";
+				break;
+			case (byte) 0x04:
+				rs = "Japanese EUC";
+				break;
+			case (byte) 0x05:
+				rs = "UCS-4";
+			break;
+			case (byte) 0x06:
+				rs = "UCS-2 ";
+			break;
+			case (byte) 0x07:
+				rs = "Latin-1";
+			break;
+			case (byte) 0x08:
+				rs = "UTF-8 ";
+			break;
+			default:
+				rs = "NotSet";
+				break;
+		}
+		
+		return rs;
+	}
+	public static enum AudioInput {
+		BuildInTurner((byte)0x00),
+		BuildInOpticalDiskDevice((byte)0x01),
+		BuildInMD((byte)0x02),
+		BuildInCassettle((byte)0x08),
+		ExternalAnalog((byte)0x10),
+		ExternalHDMI((byte)0x11),
+		ExternalUsb((byte)0x20),
+		BuildInMemoryCard((byte)0x21),
+		BuildInStorage((byte)0x22),
+		DedicateTerminal((byte)0x23),
+		NetworkInput((byte)0x30),
+		NotSet((byte)0xFE),
+		Others((byte)0xFF);
+		
+		private byte code; 
+		private AudioInput(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static AudioInput retrieveByCode(byte code) {
+	        for (AudioInput i : AudioInput.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	
+	public static enum OpenCloseStop{
+		Open((byte)0x41),
+		Close((byte)0x42),
+		Stop((byte)0x43);
+		
+		private byte code; 
+		private OpenCloseStop(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static OpenCloseStop fromCode(byte code) {
+	        for (OpenCloseStop i : OpenCloseStop.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum OpenCloseStatus{
+		FullyOpen((byte)0x41),
+		FullyClosed((byte)0x42),
+		Open((byte)0x43),
+		Closed((byte)0x44),
+		StoppedHalfway((byte)0x45);
+		
+		private byte code; 
+		private OpenCloseStatus(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static OpenCloseStatus fromCode(byte code) {
+	        for (OpenCloseStatus i : OpenCloseStatus.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum SelectiveOperation{
+		DegreeOfSettingPossition_Open((byte)0x41),
+		OperationTimeSettingValue_Open((byte)0x42),
+		OperationTimeSettingValue_Close((byte)0x43),
+		UserDefine((byte)0x44);
+		
+		private byte code; 
+		private SelectiveOperation(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static SelectiveOperation fromCode(byte code) {
+	        for (SelectiveOperation i : SelectiveOperation.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	
+	public static enum AirFlowRate{
+		Automatic((byte)0x41),
+		Level_1((byte)0x31),
+		Level_2((byte)0x32),
+		Level_3((byte)0x33),
+		Level_4((byte)0x34),
+		Level_5((byte)0x35),
+		Level_6((byte)0x36),
+		Level_7((byte)0x37),
+		Level_8((byte)0x38);
+		
+		private byte code; 
+		private AirFlowRate(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static AirFlowRate retrieveByCode(byte code) {
+	        for (AirFlowRate i : AirFlowRate.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum AirconditionerOperationMode {
+		Automatic((byte)0x41),
+		Cooling((byte)0x42),
+		Heating((byte)0x43),
+		Dehumidification((byte)0x44),
+		AirCirculator((byte)0x45),
+		Others((byte)0x40);
+		
+		private byte code; 
+		private AirconditionerOperationMode(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static AirconditionerOperationMode retrieveByCode(byte code) {
+	        for (AirconditionerOperationMode i : AirconditionerOperationMode.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum HumidifyingSetting {
+		AutomaticSetting((byte)0x70),
+		ContinuousOperation((byte)0x71),
+		IntermittentOperation((byte)0x72),
+		Level_1((byte)0x31),
+		Level_2((byte)0x32),
+		Level_3((byte)0x33);
+		
+		private byte code; 
+		private HumidifyingSetting(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static HumidifyingSetting retrieveByCode(byte code) {
+	        for (HumidifyingSetting i : HumidifyingSetting.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum FanOperation {
+		OFF((byte)0x31),
+		Weak((byte)0x32),
+		Strong((byte)0x33);
+		
+		private byte code; 
+		private FanOperation(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static FanOperation retrieveByCode(byte code) {
+	        for (FanOperation i : FanOperation.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum ShowcaseOperationMode {
+		Cooling((byte)0x41),
+		NonCooling((byte)0x42),
+		Defrosting((byte)0x43),
+		Others((byte)0x40);
+		
+		private byte code; 
+		private ShowcaseOperationMode(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static ShowcaseOperationMode retrieveByCode(byte code) {
+	        for (ShowcaseOperationMode i : ShowcaseOperationMode.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum ShowcaseType {
+		NonFluorocarbonInverter((byte)0x41),
+		Inverter((byte)0x42),
+		Others((byte)0x40);
+		
+		private byte code; 
+		private ShowcaseType(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static ShowcaseType retrieveByCode(byte code) {
+	        for (ShowcaseType i : ShowcaseType.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum ShowcaseShape {
+		BoxType((byte)0x41),
+		DesktopType((byte)0x42),
+		TrippleGlassType((byte)0x43),
+		QuadrupleGlassType((byte)0x44),
+		ReachIn((byte)0x45),
+		GlassTopType((byte)0x46),
+		MultistageOpen_CeilingBlowOffType((byte)0x47),
+		MultistageOpen_BacksideBlowOffType((byte)0x48),
+		FlatType((byte)0x49),
+		WalkINType((byte)0x4A),
+		Others((byte)0x40);
+		
+		private byte code; 
+		private ShowcaseShape(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static ShowcaseShape retrieveByCode(byte code) {
+	        for (ShowcaseShape i : ShowcaseShape.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum RiceCookingStatus {
+		Stop((byte)0x41),
+		Preheating((byte)0x42),
+		RiceCooking((byte)0x43),
+		Steaming((byte)0x44),
+		RiceCookingCompleted((byte)0x45);
+		
+		private byte code; 
+		private RiceCookingStatus(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static RiceCookingStatus retrieveByCode(byte code) {
+	        for (RiceCookingStatus r : RiceCookingStatus.values()) {
+	            if (r.code() == code) {
+	                return r;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum DRProgramType {
+		CPP((byte)0x30),
+		PTR((byte)0x31),
+		PowerUseLimit((byte)0x32),
+		PowerGenerationLimit((byte)0x33),
+		ElectricForecast((byte)0x34),
+		DLC((byte)0x35),
+		LevelDesignation((byte)0x36),
+		UserDefinedDomain((byte)0x80);
+		
+		private byte code; 
+		private DRProgramType(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static DRProgramType retrieveByCode(byte code) {
+	        for (DRProgramType d : DRProgramType.values()) {
+	            if (d.code() == code) {
+	                return d;
+	            } else if(d.code() >= (byte)0x80 &&d.code() <= (byte)0xFD) {
+	            	return DRProgramType.UserDefinedDomain;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static String dataToStringCode(byte data) {
+
+		String rs = "";
+		switch (data) {
+			case (byte)0x01:
+				rs = "ANSI X3.4";
+				break;
+			case (byte) 0x02:
+				rs = "Shift –JIS";
+				break;
+			case (byte) 0x03:
+				rs = "JIS";
+				break;
+			case (byte) 0x04:
+				rs = "Japanese EUC";
+				break;
+			case (byte) 0x05:
+				rs = "UCS-4";
+			break;
+			case (byte) 0x06:
+				rs = "UCS-2 ";
+			break;
+			case (byte) 0x07:
+				rs = "Latin-1";
+			break;
+			case (byte) 0x08:
+				rs = "UTF-8 ";
+			break;
+			default:
+				rs = "NotSet";
+				break;
+		}
+		
+		return rs;
+	}
 	public static String dataToAirConditionerOperationMode(ResultData data) {
 		int dataSize = data.size();
 		String rs = "";
@@ -290,6 +682,18 @@ public class EchonetDataConverter {
 				break;
 		}
 		
+		return rs;
+	}
+	public static String dataTo8BitMapcode(ResultData data) {
+		String rs = "";
+		byte[] allData = data.toBytes();
+		rs = String.format("%8s",Integer.toBinaryString(allData[0] & 0xFF)).replace(' ', '0');	
+		return rs;
+	}
+	public static String dataTo4BitMapcode(ResultData data) {
+		String rs = "";
+		byte[] allData = data.toBytes();
+		rs = String.format("%4s",Integer.toBinaryString(allData[0] & 0xFF)).replace(' ', '0');	
 		return rs;
 	}
 	

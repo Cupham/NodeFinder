@@ -66,8 +66,8 @@ public class SampleConstants {
 	public static String UNKNOWN_FAULT = "The fault undefined";
 	
 	
-	public static int REFRESH_INTERVAL = 5000;
-	public static int DELAY_INTERVAL  = 0;
+	public static int REFRESH_INTERVAL = 30000;
+	public static int DELAY_INTERVAL  = 1000;
 	public static ArrayList<String> curtainDomain = new ArrayList<String>(
 			Arrays.asList("192.168.2.157","192.168.2.158","192.168.2.183","192.168.2.184"));
 	public static ArrayList<String> windowDomain = new ArrayList<String>(

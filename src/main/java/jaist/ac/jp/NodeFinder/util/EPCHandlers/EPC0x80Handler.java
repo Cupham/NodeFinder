@@ -4,8 +4,8 @@ import java.util.logging.Logger;
 
 import jaist.ac.jp.NodeFinder.echonet.object.NodeProfileObject;
 import jaist.ac.jp.NodeFinder.echonet.object.eSuperClass;
+import jaist.ac.jp.NodeFinder.echonet.object.mapper.DeviceIDEnum;
 import jaist.ac.jp.NodeFinder.echonet.object.sensors.eGeneralLighting;
-import jaist.ac.jp.NodeFinder.echonet.objectmapper.DeviceIDEnum;
 
 public class EPC0x80Handler {
 	private static final Logger logger = Logger.getLogger(EPC0x80Handler.class.getName());

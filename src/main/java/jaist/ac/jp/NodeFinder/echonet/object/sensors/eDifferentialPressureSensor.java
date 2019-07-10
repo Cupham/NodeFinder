@@ -18,7 +18,7 @@ import echowand.service.result.GetResult;
 import echowand.service.result.ResultData;
 import echowand.service.result.ResultFrame;
 import jaist.ac.jp.NodeFinder.echonet.object.eDataObject;
-import jaist.ac.jp.NodeFinder.echonet.objectmapper.DeviceIDEnum;
+import jaist.ac.jp.NodeFinder.echonet.object.mapper.DeviceIDEnum;
 import jaist.ac.jp.NodeFinder.util.EchonetDataConverter;
 import jaist.ac.jp.NodeFinder.util.SampleConstants;
 

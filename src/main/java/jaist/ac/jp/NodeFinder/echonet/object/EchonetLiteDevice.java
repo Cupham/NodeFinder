@@ -7,7 +7,7 @@ import echowand.common.EOJ;
 import echowand.net.Node;
 import echowand.object.EchonetObjectException;
 import echowand.service.Service;
-import jaist.ac.jp.NodeFinder.echonet.objectmapper.CodeMapper;
+import jaist.ac.jp.NodeFinder.echonet.object.mapper.CodeMapper;
 
 public class EchonetLiteDevice {
 	private static final Logger logger = Logger.getLogger(EchonetLiteDevice.class.getName());

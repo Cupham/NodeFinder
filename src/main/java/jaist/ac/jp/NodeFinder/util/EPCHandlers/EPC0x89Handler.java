@@ -2,8 +2,8 @@ package jaist.ac.jp.NodeFinder.util.EPCHandlers;
 
 import jaist.ac.jp.NodeFinder.echonet.object.NodeProfileObject;
 import jaist.ac.jp.NodeFinder.echonet.object.eSuperClass;
+import jaist.ac.jp.NodeFinder.echonet.object.mapper.DeviceIDEnum;
 import jaist.ac.jp.NodeFinder.echonet.object.sensors.eGeneralLighting;
-import jaist.ac.jp.NodeFinder.echonet.objectmapper.DeviceIDEnum;
 
 public class EPC0x89Handler {
 	public static void refreshFaultDescription(Object obj, String newVal) {
