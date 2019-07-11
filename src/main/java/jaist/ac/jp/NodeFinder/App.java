@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright 2019 Cu Pham
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License.  You may obtain a copy
+ * of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ ******************************************************************************/
 package jaist.ac.jp.NodeFinder;
 
 import java.net.NetworkInterface;
@@ -17,33 +32,33 @@ import echowand.net.SubnetException;
 import echowand.object.EchonetObjectException;
 import echowand.service.Core;
 import echowand.service.Service;
-import jaist.ac.jp.NodeFinder.echonet.object.EchonetLiteDevice;
-import jaist.ac.jp.NodeFinder.echonet.object.NodeProfileObject;
-import jaist.ac.jp.NodeFinder.util.EPCHandlers.ServiceExecutor;
+import jaist.ac.jp.NodeFinder.echonet.object.ServiceExecutor;
+import jaist.ac.jp.NodeFinder.echonet.object.eNode;
+import jaist.ac.jp.NodeFinder.echonet.object.eNodeProfile;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.ArgumentParserException;
-import net.sourceforge.argparse4j.inf.Namespace; 
+import net.sourceforge.argparse4j.inf.Namespace;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class App
 {
 	private static Logger logger = Logger.getLogger(App.class.getName());
 	public static Core echonetCore;
 	public static Service echonetService;
 	public static int counter_profileObj;
 	public static int counter_deviceObj;
-	public static List<EchonetLiteDevice> echonetLiteDevices;
+	public static List<eNode> echonetLiteDevices;
 	public static ServiceExecutor cmdExecutor;
 	public static String networkInterface;
-    public static void main( String[] args )	
+    public static void main( String[] args )
     {
     	// init variables
     	echonetService = null;
-    	echonetLiteDevices = new ArrayList<EchonetLiteDevice>();
+    	echonetLiteDevices = new ArrayList<eNode>();
     	counter_profileObj = 0;
     	counter_deviceObj = 0;
     	cmdExecutor = new ServiceExecutor();
@@ -62,16 +77,16 @@ public class App
             System.exit(1);
         }
     	networkInterface = ns.getString("interface");
-    	
+
     	// start main program
     	start();
-    	
+
     }
-    
+
     public static boolean networkMonitor(String networkInterface) {
     		boolean isSuccessed = false;
     		if(echonetService == null) {
-    			
+
     			NetworkInterface nif = null;
 				try {
 					nif = NetworkInterface.getByName(networkInterface);
@@ -90,18 +105,19 @@ public class App
 				} catch (SubnetException e1) {
 					logger.log(Level.SEVERE, e1.toString());
 				}
-    			echonetService = new Service(echonetCore); 
+    			echonetService = new Service(echonetCore);
     			cmdExecutor.setEchonetLiteService(echonetService);
     			Monitor monitor = new Monitor(echonetCore);
     			monitor.addMonitorListener(new MonitorListener() {
-    	            public void detectEOJsJoined(Monitor monitor, Node node, List<EOJ> eojs) {
+    	            @Override
+					public void detectEOJsJoined(Monitor monitor, Node node, List<EOJ> eojs) {
     	            	logger.log(Level.INFO, "initialEchonetInterface: detectEOJsJoined: " + node + " " + eojs);
-    	                EchonetLiteDevice eDevice = new EchonetLiteDevice(node);
-    	                NodeProfileObject profile = null;        
-    	                for(EOJ eoj :  eojs) {        	       
+    	                eNode eDevice = new eNode(node);
+    	                eNodeProfile profile = null;
+    	                for(EOJ eoj :  eojs) {
     	            	    if(eoj.isProfileObject()) {
     	            	    	counter_profileObj ++;
-    	                		profile = new NodeProfileObject(node, eoj);
+    	                		profile = new eNodeProfile(node, eoj);
     	                		profile.profileObjectFromEPC(echonetService);
     	                		eDevice.setProfileObj(profile);
     	                	} else if(eoj.isDeviceObject()) {
@@ -113,11 +129,12 @@ public class App
     							}
     	                	}
     	                }
-    	                echonetLiteDevices.add(eDevice);              
+    	                echonetLiteDevices.add(eDevice);
     	            }
 
-    	            public void detectEOJsExpired(Monitor monitor, Node node, List<EOJ> eojs) {
-    	            	System.out.println("initialEchonetInterface: detectEOJsExpired: " + node + " " + eojs);
+    	            @Override
+					public void detectEOJsExpired(Monitor monitor, Node node, List<EOJ> eojs) {
+    	            	logger.info("initialEchonetInterface: detectEOJsExpired: " + node + " " + eojs);
     	            }
     			});
     			try {
@@ -127,26 +144,26 @@ public class App
 					e.printStackTrace();
 				}
     			isSuccessed = true;
-    		} 
-    		
+    		}
+
     		if(isSuccessed) {
     			System.out.println("Initilized ECHONET API successfully!");
     		}
     		return isSuccessed;
     }
-    	
+
     public static void start() {
-    	
+
     	if(!"".equals(networkInterface)) {
     		logger.info(String.format("Start to monitor ECHONET Lite network from the %s interface",networkInterface));
     		networkMonitor(networkInterface);
     	} else {
     		logger.info("Do nothing due to no network interface has been choosen");
     	}
-    	
+
     }
-    
+
     public static void exit() {
-    	
+
     }
 }
