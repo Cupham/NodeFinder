@@ -185,7 +185,7 @@ public class eCommercialShowcase extends eDataObject{
 					switch (resultData.getEPC()) 
 					{
 						case xB0:
-							refreshOperationModeSetting(EchonetDataConverter.ShowcaseOperationMode.retrieveByCode(resultData.toBytes()[0]));
+							refreshOperationModeSetting(EchonetDataConverter.ShowcaseOperationMode.fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xB0, EDT: 0x%02X}=={OperationModeSetting:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getOperationModeSetting()));
 						break;
@@ -232,7 +232,7 @@ public class eCommercialShowcase extends eDataObject{
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getInsideCaseSettingTemperature()));
 						break;
 						case xD0:
-							refreshShowcaseTypeInfor(EchonetDataConverter.ShowcaseType.retrieveByCode(resultData.toBytes()[0]));
+							refreshShowcaseTypeInfor(EchonetDataConverter.ShowcaseType.fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xD0, EDT: 0x%02X}=={ShowcaseTypeInfor:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getShowcaseTypeInfor()));
 						break;
@@ -255,7 +255,7 @@ public class eCommercialShowcase extends eDataObject{
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],isShowcaseConfigInfor()?"SeperateType":"BuiltInType"));
 						break;
 						case xD3:
-							refreshShowcaseShapeInfor(EchonetDataConverter.ShowcaseShape.retrieveByCode(resultData.toBytes()[0]));
+							refreshShowcaseShapeInfor(EchonetDataConverter.ShowcaseShape.fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xD3, EDT: 0x%02X}=={ShowcaseShapeInfor:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getShowcaseShapeInfor()));
 						break;
@@ -294,7 +294,7 @@ public class eCommercialShowcase extends eDataObject{
 					switch (resultData.getEPC()) 
 					{
 							case xB0:
-								refreshOperationModeSetting(EchonetDataConverter.ShowcaseOperationMode.retrieveByCode(resultData.toBytes()[0]));
+								refreshOperationModeSetting(EchonetDataConverter.ShowcaseOperationMode.fromCode(resultData.toBytes()[0]));
 								logger.info(String.format("OBSERVER: Node:%s@EOJ:%s {EPC:0xB0, EDT: 0x%02X}=={OperationModeSetting:%s}",
 										 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getOperationModeSetting()));
 							break;

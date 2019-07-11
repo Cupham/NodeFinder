@@ -99,7 +99,7 @@ public class eRiceCooker extends eDataObject{
 					switch (resultData.getEPC()) 
 					{
 						case xB1:
-							refreshRiceCookingStatus(EchonetDataConverter.RiceCookingStatus.retrieveByCode(resultData.toBytes()[0]));
+							refreshRiceCookingStatus(EchonetDataConverter.RiceCookingStatus.fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xB1, EDT: 0x%02X}=={RiceCookingStatus:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getRiceCookingStatus()));
 						break;

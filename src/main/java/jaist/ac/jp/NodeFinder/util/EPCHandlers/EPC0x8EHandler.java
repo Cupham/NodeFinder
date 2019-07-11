@@ -4,8 +4,8 @@ import java.util.Date;
 
 import jaist.ac.jp.NodeFinder.echonet.object.NodeProfileObject;
 import jaist.ac.jp.NodeFinder.echonet.object.eSuperClass;
+import jaist.ac.jp.NodeFinder.echonet.object.housing.eGeneralLighting;
 import jaist.ac.jp.NodeFinder.echonet.object.mapper.DeviceIDEnum;
-import jaist.ac.jp.NodeFinder.echonet.object.sensors.eGeneralLighting;
 
 public class EPC0x8EHandler {
 	public static void refreshProductDate(Object obj, Date newVal) {

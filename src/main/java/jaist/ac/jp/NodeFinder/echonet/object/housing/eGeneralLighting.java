@@ -1,4 +1,4 @@
-package jaist.ac.jp.NodeFinder.echonet.object.sensors;
+package jaist.ac.jp.NodeFinder.echonet.object.housing;
 
 
 

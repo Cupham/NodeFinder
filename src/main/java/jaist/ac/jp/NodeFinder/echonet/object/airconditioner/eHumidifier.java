@@ -94,14 +94,14 @@ public class eHumidifier extends eDataObject{
 							if(resultData.toBytes()[0] >=(byte)0x00 && resultData.toBytes()[0] <=(byte)0x64) {
 								val = EchonetDataConverter.dataToInteger(resultData) + " %";
 							} else {
-								val = EchonetDataConverter.HumidifyingSetting.retrieveByCode(resultData.toBytes()[0]).name();
+								val = EchonetDataConverter.HumidifyingSetting.fromCode(resultData.toBytes()[0]).name();
 							}
 							refreshHumidifyingSetting1(val);
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xC0, EDT: 0x%02X}=={refreshHumidifyingSetting1:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getHumidifyingSetting1()));
 						break;
 						case xC1:
-							refreshHumidifyingSetting2(EchonetDataConverter.HumidifyingSetting.retrieveByCode(resultData.toBytes()[0]));
+							refreshHumidifyingSetting2(EchonetDataConverter.HumidifyingSetting.fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xB0, EDT: 0x%02X}=={CallDetectThresholdLevel:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getHumidifyingSetting2()));
 						break;

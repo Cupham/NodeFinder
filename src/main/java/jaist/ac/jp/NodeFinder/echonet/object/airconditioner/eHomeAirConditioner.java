@@ -112,7 +112,7 @@ public class eHomeAirConditioner extends eDataObject{
 					switch (resultData.getEPC()) 
 					{
 						case xB0:
-							refreshOperationModeSetting(EchonetDataConverter.AirconditionerOperationMode.retrieveByCode(resultData.toBytes()[0]));
+							refreshOperationModeSetting(EchonetDataConverter.AirconditionerOperationMode.fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xB0, EDT: 0x%02X}=={OperationModeSetting:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getOperationModeSetting()));
 						break;
@@ -127,7 +127,7 @@ public class eHomeAirConditioner extends eDataObject{
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getRoomTemperature()));
 						break;
 						case xA0:
-							refreshAirFlowRateSetting(EchonetDataConverter.AirFlowRate.retrieveByCode(resultData.toBytes()[0]));
+							refreshAirFlowRateSetting(EchonetDataConverter.AirFlowRate.fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xA0, EDT: 0x%02X}=={AirFlowRateSetting:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getAirFlowRateSetting()));
 						break;
@@ -156,12 +156,12 @@ public class eHomeAirConditioner extends eDataObject{
 					switch (resultData.getEPC()) 
 					{
 					case xB0:
-						refreshOperationModeSetting(EchonetDataConverter.AirconditionerOperationMode.retrieveByCode(resultData.toBytes()[0]));
+						refreshOperationModeSetting(EchonetDataConverter.AirconditionerOperationMode.fromCode(resultData.toBytes()[0]));
 						logger.info(String.format("OBSERVER: Node:%s@EOJ:%s {EPC:0xB0, EDT: 0x%02X}=={OperationModeSetting:%s}",
 								 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getOperationModeSetting()));
 					break;
 					case xA0:
-						refreshAirFlowRateSetting(EchonetDataConverter.AirFlowRate.retrieveByCode(resultData.toBytes()[0]));
+						refreshAirFlowRateSetting(EchonetDataConverter.AirFlowRate.fromCode(resultData.toBytes()[0]));
 						logger.info(String.format("OBSERVER: Node:%s@EOJ:%s {EPC:0xA0, EDT: 0x%02X}=={AirFlowRateSetting:%s}",
 								 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getAirFlowRateSetting()));
 					break;

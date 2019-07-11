@@ -120,7 +120,7 @@ public class eGasHeatCommercialAirConditionerIndoorUnit extends eDataObject{
 					{
 						case xB0:
 							refreshOperationModeSetting(EchonetDataConverter.AirconditionerOperationMode.
-									retrieveByCode(resultData.toBytes()[0]));
+									fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xB0, EDT: 0x%02X}=={OperationModeSetting:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getOperationModeSetting()));
 						break;
@@ -140,7 +140,7 @@ public class eGasHeatCommercialAirConditionerIndoorUnit extends eDataObject{
 						break;
 						case xAE:
 							refreshCurrentFunction(EchonetDataConverter.AirconditionerOperationMode.
-									retrieveByCode(resultData.toBytes()[0]));
+									fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xAE, EDT: 0x%02X}=={refreshCurrentFunction:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getCurrentFunction()));
 						break;
@@ -175,7 +175,7 @@ public class eGasHeatCommercialAirConditionerIndoorUnit extends eDataObject{
 					{
 						case xB0:
 							refreshOperationModeSetting(EchonetDataConverter.AirconditionerOperationMode.
-									retrieveByCode(resultData.toBytes()[0]));
+									fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("OBSERVER: Node:%s@EOJ:%s {EPC:0xB0, EDT: 0x%02X}=={OperationModeSetting:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getOperationModeSetting()));
 						break;

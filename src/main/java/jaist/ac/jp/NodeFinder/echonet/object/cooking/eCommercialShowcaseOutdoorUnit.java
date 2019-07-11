@@ -90,7 +90,7 @@ public class eCommercialShowcaseOutdoorUnit extends eDataObject{
 					switch (resultData.getEPC()) 
 					{
 						case xB0:
-							refreshOperationModeSetting(EchonetDataConverter.ShowcaseOperationMode.retrieveByCode(resultData.toBytes()[0]));
+							refreshOperationModeSetting(EchonetDataConverter.ShowcaseOperationMode.fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xB0, EDT: 0x%02X}=={OperationModeSetting:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getOperationModeSetting()));
 						break;
@@ -123,7 +123,7 @@ public class eCommercialShowcaseOutdoorUnit extends eDataObject{
 					switch (resultData.getEPC()) 
 					{
 							case xB0:
-								refreshOperationModeSetting(EchonetDataConverter.ShowcaseOperationMode.retrieveByCode(resultData.toBytes()[0]));
+								refreshOperationModeSetting(EchonetDataConverter.ShowcaseOperationMode.fromCode(resultData.toBytes()[0]));
 								logger.info(String.format("OBSERVER: Node:%s@EOJ:%s {EPC:0xB0, EDT: 0x%02X}=={OperationModeSetting:%s}",
 										 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getOperationModeSetting()));
 							break;

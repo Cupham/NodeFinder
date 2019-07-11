@@ -149,7 +149,7 @@ public class eAudio extends eDataObject{
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],isMuteSetting()));
 						break;
 						case xBC:
-							AudioInput input = AudioInput.retrieveByCode(resultData.toBytes()[0]);
+							AudioInput input = AudioInput.fromCode(resultData.toBytes()[0]);
 							if(input!= null) {
 								refreshInputSourceSetting(input);
 							} else {
@@ -199,7 +199,7 @@ public class eAudio extends eDataObject{
 								 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],isMuteSetting()));
 					break;
 					case xBC:
-						AudioInput input = AudioInput.retrieveByCode(resultData.toBytes()[0]);
+						AudioInput input = AudioInput.fromCode(resultData.toBytes()[0]);
 						if(input!= null) {
 							refreshInputSourceSetting(input);
 						} else {

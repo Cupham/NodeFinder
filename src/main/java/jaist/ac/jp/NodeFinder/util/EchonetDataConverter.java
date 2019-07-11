@@ -320,8 +320,97 @@ public class EchonetDataConverter {
 		public byte code() {
 			return code;
 		}
-		public static AudioInput retrieveByCode(byte code) {
+		public static AudioInput fromCode(byte code) {
 	        for (AudioInput i : AudioInput.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	
+	public static enum FITContractType {
+		FIT((byte)0x41),
+		NonFIT((byte)0x42),
+		NoSetting((byte)0x43);
+		
+		private byte code; 
+		private FITContractType(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static FITContractType fromCode(byte code) {
+	        for (FITContractType i : FITContractType.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum SelfConsumptionType {
+		WithSelfConsumption((byte)0x41),
+		WithoutSelfConsumption((byte)0x42),
+		Unknown((byte)0x43);
+		
+		private byte code; 
+		private SelfConsumptionType(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static SelfConsumptionType fromCode(byte code) {
+	        for (SelfConsumptionType i : SelfConsumptionType.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	
+	public static enum SystemInterconnectedType {
+		SystemInterconnectedType_ReservePowerFlowAcceptable((byte)0x00),
+		IndependentType((byte)0x00),
+		SystemInterconnectedType_ReservePowerFlowNotAcceptable((byte)0x02),
+		Unknown((byte)0x03);
+		
+		private byte code; 
+		private SystemInterconnectedType(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static SystemInterconnectedType fromCode(byte code) {
+	        for (SystemInterconnectedType i : SystemInterconnectedType.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum OutputPowerRestraint {
+		OngoingRestraint_OutputPowerControl((byte)0x41),
+		OngoingRestraint_ExceptOutputPowerControl((byte)0x42),
+		OngoingRestraint_ReasonUnknown((byte)0x43),
+		NotRestraint((byte)0x44),
+		Unknown((byte)0x45);
+		
+		private byte code; 
+		private OutputPowerRestraint(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static OutputPowerRestraint fromCode(byte code) {
+	        for (OutputPowerRestraint i : OutputPowerRestraint.values()) {
 	            if (i.code() == code) {
 	                return i;
 	            }
@@ -344,6 +433,89 @@ public class EchonetDataConverter {
 		}
 		public static OpenCloseStop fromCode(byte code) {
 	        for (OpenCloseStop i : OpenCloseStop.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum WaterTemperature{
+		Cooling_Level1((byte)0x21),
+		Cooling_Level2((byte)0x22),
+		Cooling_Level3((byte)0x23),
+		Cooling_Level4((byte)0x24),
+		Cooling_Level5((byte)0x25),
+		Cooling_Level6((byte)0x26),
+		Cooling_Level7((byte)0x27),
+		Cooling_Level8((byte)0x28),
+		Cooling_Level9((byte)0x29),
+		Cooling_Level10((byte)0x2A),
+		Cooling_Level11((byte)0x2B),
+		Cooling_Level12((byte)0x2C),
+		Cooling_Level13((byte)0x2D),
+		Cooling_Level14((byte)0x2E),
+		Cooling_Level15((byte)0x2F),
+		Heating_Level1((byte)0x31),
+		Heating_Level2((byte)0x32),
+		Heating_Level3((byte)0x33),
+		Heating_Level4((byte)0x34),
+		Heating_Level5((byte)0x35),
+		Heating_Level6((byte)0x36),
+		Heating_Level7((byte)0x37),
+		Heating_Level8((byte)0x38),
+		Heating_Level9((byte)0x39),
+		Heating_Level10((byte)0x3A),
+		Heating_Level11((byte)0x3B),
+		Heating_Level12((byte)0x3C),
+		Heating_Level13((byte)0x3D),
+		Heating_Level14((byte)0x3E),
+		Heating_Level15((byte)0x3F),
+		Auto((byte)0x41);
+		
+		private byte code; 
+		private WaterTemperature(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static WaterTemperature fromCode(byte code) {
+	        for (WaterTemperature i : WaterTemperature.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum TemperatureSetting{
+		Level1((byte)0x31),
+		Level2((byte)0x32),
+		Level3((byte)0x33),
+		Level4((byte)0x34),
+		Level5((byte)0x35),
+		Level6((byte)0x36),
+		Level7((byte)0x37),
+		Level8((byte)0x38),
+		Level9((byte)0x39),
+		Level10((byte)0x3A),
+		Level11((byte)0x3B),
+		Level12((byte)0x3C),
+		Level13((byte)0x3D),
+		Level14((byte)0x3E),
+		Level15((byte)0x3F),
+		Auto((byte)0x41);
+		
+		private byte code; 
+		private TemperatureSetting(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static TemperatureSetting fromCode(byte code) {
+	        for (TemperatureSetting i : TemperatureSetting.values()) {
 	            if (i.code() == code) {
 	                return i;
 	            }
@@ -397,6 +569,49 @@ public class EchonetDataConverter {
 	        return null;
 	    }
 	}
+	
+	public static enum WaterHeaterSetting{
+		AutomaticWaterHeatingUsed((byte)0x41),
+		NonAutomaticWaterHeatingStopped((byte)0x42),
+		NonAutomaticWaterHeatingUsed((byte)0x43);
+		
+		private byte code; 
+		private WaterHeaterSetting(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static WaterHeaterSetting fromCode(byte code) {
+	        for (WaterHeaterSetting i : WaterHeaterSetting.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum BathOperationStatus{
+		FillingHotWater((byte)0x41),
+		Stopped((byte)0x42),
+		KeepingTemperature((byte)0x43);
+		
+		private byte code; 
+		private BathOperationStatus(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static BathOperationStatus fromCode(byte code) {
+	        for (BathOperationStatus i : BathOperationStatus.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
 	public static enum SelectiveOperation{
 		DegreeOfSettingPossition_Open((byte)0x41),
 		OperationTimeSettingValue_Open((byte)0x42),
@@ -412,6 +627,40 @@ public class EchonetDataConverter {
 		}
 		public static SelectiveOperation fromCode(byte code) {
 	        for (SelectiveOperation i : SelectiveOperation.values()) {
+	            if (i.code() == code) {
+	                return i;
+	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum HeatingShiftTime{
+		Nine_AM((byte)0x09),
+		Ten_AM((byte)0x1A),
+		Eleven_AM((byte)0x1B),
+		Twelve_PM((byte)0x1C),
+		One_PM((byte)0x1D),
+		Two_PM((byte)0x1E),
+		Three_PM((byte)0x1F),
+		Four_PM((byte)0x10),
+		Five_PM((byte)0x11),
+		Eight_PM((byte)0x14),
+		Nine_PM((byte)0x15),
+		Ten_PM((byte)0x16),
+		Eleven_PM((byte)0x17),
+		Twelve_AM((byte)0x18),
+		One_AM((byte)0x01),
+		Clear((byte)0x00);
+		
+		private byte code; 
+		private HeatingShiftTime(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static HeatingShiftTime fromCode(byte code) {
+	        for (HeatingShiftTime i : HeatingShiftTime.values()) {
 	            if (i.code() == code) {
 	                return i;
 	            }
@@ -438,7 +687,7 @@ public class EchonetDataConverter {
 		public byte code() {
 			return code;
 		}
-		public static AirFlowRate retrieveByCode(byte code) {
+		public static AirFlowRate fromCode(byte code) {
 	        for (AirFlowRate i : AirFlowRate.values()) {
 	            if (i.code() == code) {
 	                return i;
@@ -462,7 +711,7 @@ public class EchonetDataConverter {
 		public byte code() {
 			return code;
 		}
-		public static AirconditionerOperationMode retrieveByCode(byte code) {
+		public static AirconditionerOperationMode fromCode(byte code) {
 	        for (AirconditionerOperationMode i : AirconditionerOperationMode.values()) {
 	            if (i.code() == code) {
 	                return i;
@@ -486,7 +735,7 @@ public class EchonetDataConverter {
 		public byte code() {
 			return code;
 		}
-		public static HumidifyingSetting retrieveByCode(byte code) {
+		public static HumidifyingSetting fromCode(byte code) {
 	        for (HumidifyingSetting i : HumidifyingSetting.values()) {
 	            if (i.code() == code) {
 	                return i;
@@ -507,7 +756,7 @@ public class EchonetDataConverter {
 		public byte code() {
 			return code;
 		}
-		public static FanOperation retrieveByCode(byte code) {
+		public static FanOperation fromCode(byte code) {
 	        for (FanOperation i : FanOperation.values()) {
 	            if (i.code() == code) {
 	                return i;
@@ -529,7 +778,7 @@ public class EchonetDataConverter {
 		public byte code() {
 			return code;
 		}
-		public static ShowcaseOperationMode retrieveByCode(byte code) {
+		public static ShowcaseOperationMode fromCode(byte code) {
 	        for (ShowcaseOperationMode i : ShowcaseOperationMode.values()) {
 	            if (i.code() == code) {
 	                return i;
@@ -550,7 +799,7 @@ public class EchonetDataConverter {
 		public byte code() {
 			return code;
 		}
-		public static ShowcaseType retrieveByCode(byte code) {
+		public static ShowcaseType fromCode(byte code) {
 	        for (ShowcaseType i : ShowcaseType.values()) {
 	            if (i.code() == code) {
 	                return i;
@@ -579,7 +828,7 @@ public class EchonetDataConverter {
 		public byte code() {
 			return code;
 		}
-		public static ShowcaseShape retrieveByCode(byte code) {
+		public static ShowcaseShape fromCode(byte code) {
 	        for (ShowcaseShape i : ShowcaseShape.values()) {
 	            if (i.code() == code) {
 	                return i;
@@ -602,7 +851,7 @@ public class EchonetDataConverter {
 		public byte code() {
 			return code;
 		}
-		public static RiceCookingStatus retrieveByCode(byte code) {
+		public static RiceCookingStatus fromCode(byte code) {
 	        for (RiceCookingStatus r : RiceCookingStatus.values()) {
 	            if (r.code() == code) {
 	                return r;
@@ -628,13 +877,41 @@ public class EchonetDataConverter {
 		public byte code() {
 			return code;
 		}
-		public static DRProgramType retrieveByCode(byte code) {
+		public static DRProgramType fromCode(byte code) {
 	        for (DRProgramType d : DRProgramType.values()) {
 	            if (d.code() == code) {
 	                return d;
 	            } else if(d.code() >= (byte)0x80 &&d.code() <= (byte)0xFD) {
 	            	return DRProgramType.UserDefinedDomain;
 	            }
+	        }
+	        return null;
+	    }
+	}
+	public static enum OperationSetting {
+		Automatic((byte)0x41),
+		Standard((byte)0x42),
+		Level_1((byte)0x31),
+		Level_2((byte)0x32),
+		Level_3((byte)0x33),
+		Level_4((byte)0x34),
+		Level_5((byte)0x35),
+		Level_6((byte)0x36),
+		Level_7((byte)0x37),
+		Level_8((byte)0x38);
+		
+		private byte code; 
+		private OperationSetting(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static OperationSetting fromCode(byte code) {
+	        for (OperationSetting d : OperationSetting.values()) {
+	            if (d.code() == code) {
+	                return d;
+	            } 
 	        }
 	        return null;
 	    }
@@ -653,6 +930,30 @@ public class EchonetDataConverter {
 		}
 		public static SprinklerValveOpenCloseSetting fromCode(byte code) {
 	        for (SprinklerValveOpenCloseSetting d : SprinklerValveOpenCloseSetting.values()) {
+	            if (d.code() == code) {
+	                return d;
+	            } 
+	        }
+	        return null;
+	    }
+	}
+	public static enum DryerOperation {
+		VentilationOperation((byte)0x10),
+		PrewarmerOperation((byte)0x20),
+		HeaterOperation((byte)0x30),
+		BathroomDryerOperation((byte)0x40),
+		CoolAirCirculatorOperation((byte)0x50),
+		Stop((byte)0x00);
+		
+		private byte code; 
+		private DryerOperation(byte msg) {
+			this.code = msg;
+		}
+		public byte code() {
+			return code;
+		}
+		public static DryerOperation fromCode(byte code) {
+	        for (DryerOperation d : DryerOperation.values()) {
 	            if (d.code() == code) {
 	                return d;
 	            } 
@@ -727,6 +1028,12 @@ public class EchonetDataConverter {
 		}
 		
 		return rs;
+	}
+	public static long longFromByte(byte b1, byte b2, byte b3, byte b4) {
+		return (b4+ b3*256 + b2*256*256 + b1*256*256*256);
+	}
+	public static short shortFromByte(byte b1, byte b2) {
+		return (short)(b2+ b1*256);
 	}
 	public static String dataTo8BitMapcode(ResultData data) {
 		String rs = "";

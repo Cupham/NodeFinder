@@ -177,7 +177,7 @@ public class eDREventController extends eDataObject{
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getBusinessID()));
 						break;
 						case xD1:
-							refreshDRProgramType(EchonetDataConverter.DRProgramType.retrieveByCode(resultData.toBytes()[0]));
+							refreshDRProgramType(EchonetDataConverter.DRProgramType.fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xD1, EDT: 0x%02X}=={DRProgramType:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getDrProgramType()));
 						break;

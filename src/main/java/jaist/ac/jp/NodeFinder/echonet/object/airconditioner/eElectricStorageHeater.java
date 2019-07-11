@@ -156,7 +156,7 @@ public class eElectricStorageHeater extends eDataObject{
 					switch (resultData.getEPC()) 
 					{
 						case xA1:
-							refreshFanOperationStatus(EchonetDataConverter.FanOperation.retrieveByCode(resultData.toBytes()[0]));
+							refreshFanOperationStatus(EchonetDataConverter.FanOperation.fromCode(resultData.toBytes()[0]));
 							logger.info(String.format("Node:%s@EOJ:%s {EPC:0xA1, EDT: 0x%02X}=={FanOperationStatus:%s}",
 									 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getFanOperationStatus()));
 						break;
@@ -243,7 +243,7 @@ public class eElectricStorageHeater extends eDataObject{
 					switch (resultData.getEPC()) 
 					{
 					case xA1:
-						refreshFanOperationStatus(EchonetDataConverter.FanOperation.retrieveByCode(resultData.toBytes()[0]));
+						refreshFanOperationStatus(EchonetDataConverter.FanOperation.fromCode(resultData.toBytes()[0]));
 						logger.info(String.format("OBSERVER: Node:%s@EOJ:%s {EPC:0xA1, EDT: 0x%02X}=={FanOperationStatus:%s}",
 								 getNode().getNodeInfo().toString(),getEoj().toString(),resultData.toBytes()[0],getFanOperationStatus()));
 					break;

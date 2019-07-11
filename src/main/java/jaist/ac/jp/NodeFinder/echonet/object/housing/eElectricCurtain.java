@@ -42,9 +42,9 @@ public class eElectricCurtain extends eDataObject{
 	public eElectricCurtain(Node node,EOJ eoj) {
 		super(node, eoj);
 		this.setGroupCode((byte) 0x02);
-		this.setClassCode((byte) 0x62);
+		this.setClassCode((byte) 0x6B);
 		this.setInstanceCode(eoj.getInstanceCode());
-		setType(DeviceIDEnum.ElectricCurtain);
+		setType(DeviceIDEnum.ElectricWaterHeater);
 	}
 	
 	// Provided Services	

@@ -46,6 +46,7 @@ public class App
     	echonetLiteDevices = new ArrayList<EchonetLiteDevice>();
     	counter_profileObj = 0;
     	counter_deviceObj = 0;
+    	cmdExecutor = new ServiceExecutor();
     	// get user input
     	logger.log(Level.INFO, "Main Program Started");
     	ArgumentParser parser = ArgumentParsers.newFor("EchonetNetworkMonitor").build()
@@ -93,7 +94,6 @@ public class App
     			cmdExecutor.setEchonetLiteService(echonetService);
     			Monitor monitor = new Monitor(echonetCore);
     			monitor.addMonitorListener(new MonitorListener() {
-    	            @Override
     	            public void detectEOJsJoined(Monitor monitor, Node node, List<EOJ> eojs) {
     	            	logger.log(Level.INFO, "initialEchonetInterface: detectEOJsJoined: " + node + " " + eojs);
     	                EchonetLiteDevice eDevice = new EchonetLiteDevice(node);
@@ -116,7 +116,6 @@ public class App
     	                echonetLiteDevices.add(eDevice);              
     	            }
 
-    	            @Override
     	            public void detectEOJsExpired(Monitor monitor, Node node, List<EOJ> eojs) {
     	            	System.out.println("initialEchonetInterface: detectEOJsExpired: " + node + " " + eojs);
     	            }
