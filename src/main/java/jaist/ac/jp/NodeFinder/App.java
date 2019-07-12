@@ -15,11 +15,14 @@
  ******************************************************************************/
 package jaist.ac.jp.NodeFinder;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import echowand.common.EOJ;
@@ -54,6 +57,16 @@ public class App
 	public static List<eNode> echonetLiteDevices;
 	public static ServiceExecutor cmdExecutor;
 	public static String networkInterface;
+	static {
+        InputStream stream = App.class.getClassLoader().
+                getResourceAsStream("logging.properties");
+        try {
+            LogManager.getLogManager().readConfiguration(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        logger = Logger.getLogger(App.class.getName());
+    }
     public static void main( String[] args )
     {
     	// init variables
@@ -147,7 +160,7 @@ public class App
     		}
 
     		if(isSuccessed) {
-    			System.out.println("Initilized ECHONET API successfully!");
+    			logger.info("Initilized ECHONET API successfully!");
     		}
     		return isSuccessed;
     }
