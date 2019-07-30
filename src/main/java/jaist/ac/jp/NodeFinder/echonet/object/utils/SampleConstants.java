@@ -106,9 +106,9 @@ public class SampleConstants {
 					  EPC.x93,EPC.x97,EPC.x98,EPC.x99,EPC.x9A));
 
 	public static int getRefreshInterval() {
-		return REFRESH_INTERVAL + new Random().nextInt(1000);
+		return REFRESH_INTERVAL;
 	}
 	public static int getDelayInterval() {
-		return DELAY_INTERVAL + + new Random().nextInt(2000);
+		return DELAY_INTERVAL;
 	}
 }

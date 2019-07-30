@@ -68,6 +68,7 @@ public class eSuperObject {
 	private Timer timer;
 	private String deviceID;
 	private eDeviceType type;
+	public boolean observeEnabled;
 	/**
 	 * Device IP
 	 */
@@ -197,6 +198,7 @@ public class eSuperObject {
 		eSuperObject.this.eoj = eoj;
 		eSuperObject.this.deviceID = node.getNodeInfo().toString().replace(".", "_")+"_"+eoj.getInstanceCode();
 		eSuperObject.this.type = eDeviceType.SuperObject;
+		this.observeEnabled = App.observe;
 	}
 	public void getSuperData(Service service, Node n, EOJ e){
 		final EOJ eoj = e;
@@ -361,7 +363,9 @@ public class eSuperObject {
 		final Node node = eSuperObject.this.node;
 		final EOJ eoj = eSuperObject.this.eoj;
 		timer = new Timer(true);
-		observeSuperData(service, node, eoj);
+		if(observeEnabled) {
+			observeSuperData(service, node, eoj);
+		}
 		timer.schedule(new TimerTask() {
 
 			@Override

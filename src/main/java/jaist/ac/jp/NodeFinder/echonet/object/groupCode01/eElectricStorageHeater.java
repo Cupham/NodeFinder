@@ -136,8 +136,10 @@ public class eElectricStorageHeater extends eDataObject{
 		final Service service = s;
 		final Node node = this.getNode();
 		final EOJ eoj = this.getEoj();
-		observeSuperData(service, node, eoj);
-		observeSpecificData(service);
+		if(observeEnabled) {
+			observeSuperData(service, node, eoj);
+			observeSpecificData(service);
+		}
 		timer = new Timer(true);
 		timer.schedule(new TimerTask() {
 			@Override

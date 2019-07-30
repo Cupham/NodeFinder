@@ -57,6 +57,7 @@ public class App
 	public static List<eNode> echonetLiteDevices;
 	public static ServiceExecutor cmdExecutor;
 	public static String networkInterface;
+	public static boolean observe = true;
 	static {
         InputStream stream = App.class.getClassLoader().
                 getResourceAsStream("logging.properties");
@@ -171,7 +172,7 @@ public class App
     		logger.info(String.format("Start to monitor ECHONET Lite network from the %s interface",networkInterface));
     		networkMonitor(networkInterface);
     	} else {
-    		logger.info("Do nothing due to no network interface has been choosen");
+    		logger.info("Do nothing due to no network interface has not been choosen");
     	}
 
     }
